@@ -47,18 +47,51 @@
 
 #weather-cards-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    
+    justify-content: center;
+}
+
+.current-weather-conditions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#current-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
 }
 
 #city {
+    color: black;
     font-weight: bold;
-    margin: 10px;
+}
+
+#todays-weather {
+    height: fit-content;
 }
 
 #future-forecast {
     color: black;
     font-weight: bold;
-    writing-mode: vertical-lr;
+}
+
+#bottom-half {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+#future-forecast-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card {
+    margin: 10px;
 }

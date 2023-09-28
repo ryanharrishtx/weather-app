@@ -31,34 +31,23 @@
         </div>
     </div>
 
-    <!-- City Name -->
-    <div id="city-name"><h3 id="city">Houston</h3></div>
-
     <!-- Weather Cards Container -->
     <div id="weather-cards-container">
-        <div id="todays-weather" class="card text-bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Header</div>
+        <!-- City Name -->
+        <div class="current-weather-conditions">
+        <div id="city-name"><h3 id="city">Current Weather Conditions</h3></div>
+        <div id="todays-weather" class="card text-bg-primary" style="max-width: 18rem;">
+            <div id="current-card-header">Header</div>
             <div class="card-body">
-              <h5 class="card-title">Primary card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 id="current-card-title"><div id="wicon"></div>Primary card title</h5>
+              <p id="current-card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
-          <h3 id="future-forecast">5-Day Forecast</h3>
-          <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-              <h5 class="card-title">Secondary card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
-          <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-              <h5 class="card-title">Secondary card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
-          <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+        </div>
+          <div id="bottom-half">
+              <h3 id="future-forecast">5-Day Forecast</h3>
+                <div id="future-forecast-cards">
+            <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
             <div class="card-header">Header</div>
             <div class="card-body">
               <h5 class="card-title">Secondary card title</h5>
@@ -79,7 +68,24 @@
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
+          <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+              <h5 class="card-title">Secondary card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+          <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+              <h5 class="card-title">Secondary card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+    </div>
     </div>
 <script src="./assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 </body>
 </html>
