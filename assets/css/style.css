@@ -27,16 +27,17 @@
     margin-right: 10px;
 }
 
-.recent-search-display {
+#recent-search-display {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;    
     align-content: space-around;
     flex-wrap: wrap;
+    margin: 10px;
 }
 
-.recent-search-display p {
+#recent-search-display button {
     padding: 0 10px;
     margin: 0 10px;
     background-color: #2e5fc9;

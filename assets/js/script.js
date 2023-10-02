@@ -8,18 +8,34 @@ let searchBtn = document.querySelector("#search");
 searchBtn.addEventListener("click", function() { 
 
         // Grabbing input from search bar
-        const cityInput = document.querySelector("#city-input");
+        const cityInput = document.getElementById("city-input");
         const city = cityInput.value;
 
-        const saveInput = localStorage.setItem("city", city);
-
         function setSavedInput() {
-            document.createElement("p");
-            let p = document.querySelectorAll("p");
-            let input = localStorage.getItem("city");
-            p.innerText = input;
-            document.getElementById("recent-searches-display").appendChild(p);
+            const savedInput = localStorage.getItem("city");
+            if (savedInput) {
+                let button = document.createElement("button");
+                button.classList.add("btn", "btn-secondary", "btn-block", "mt-2");
+                button.textContent = savedInput;
+                document.getElementById("recent-search-display").appendChild(button);
+                button.addEventListener("click", function() {
+                    cityInput.value = savedInput;
+                    searchBtn.click();
+
+                    if (cityInput.value === cityInput.value) {
+                        button.remove();
+                    }
+                });
+
+                // Clearing input after search
+                cityInput.value = "";
+            } else {
+                cityInput.value = "";
+            }
         }
+
+        // Saving input to local storage
+        localStorage.setItem("city", city);
         
 
 
@@ -87,5 +103,6 @@ searchBtn.addEventListener("click", function() {
                         }
                     })
             })
+            setSavedInput();
     }
 );
