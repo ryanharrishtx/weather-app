@@ -40,7 +40,7 @@ searchBtn.addEventListener("click", function() {
 
 
         // Establishing URL to fetch data based on city
-        let getLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
+        let getLatLon = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
 
         // Fetching API based on city to get lat and lon to use in next API call
         fetch(getLatLon)
@@ -68,7 +68,7 @@ searchBtn.addEventListener("click", function() {
                         document.getElementById("current-card-text").innerHTML = `Wind Speed: ${data.wind.speed}MPH, Humidity: ${data.main.humidity}%`;
                     })
                     // Future Day Cards
-                let futureAPIURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+                let futureAPIURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
                 fetch(futureAPIURL)
                     .then(function (response) {
                         return response.json();
