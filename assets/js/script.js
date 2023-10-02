@@ -51,6 +51,7 @@ searchBtn.addEventListener("click", function() {
                         document.getElementById("current-card-title").innerHTML = `${iconurl} ${data.main.temp}°F`;
                         document.getElementById("current-card-text").innerHTML = `Wind Speed: ${data.wind.speed}MPH, Humidity: ${data.main.humidity}%`;
                     })
+                    // Future Day Cards
                 let futureAPIURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
                 fetch(futureAPIURL)
                     .then(function (response) {
@@ -58,39 +59,33 @@ searchBtn.addEventListener("click", function() {
                     })
                     .then(function (data) {
                         console.log(data);
-                        let futureData = data.list;
-                        for (let i = 0; i < futureData.length; i++) {
-                            if (futureData[i].dt_txt.includes("12:00:00")) {
-                                futureData = futureData[i];
-                                let futureTemp = futureData.main.temp;
-                                let futureHumidity = futureData.main.humidity;
-                                let futureWind = futureData.wind.speed;
-                                let futureIcon = futureData.weather[0].icon;
-                                let futureIconURL = `<img src="http://openweathermap.org/img/w/${futureIcon}.png" />`;
-                                document.getElementById(`card-title`).innerHTML = `${futureIconURL} ${futureTemp}°F`;
-                                document.getElementById(`card-text`).innerText = `Wind Speed: ${futureWind}MPH, Humidity: ${futureHumidity}%`;
-
-
+                        const cardTitleArray = [".card-title1", ".card-title2", ".card-title3", ".card-title4", ".card-title5"];
+                        const cardTextArray = [".card-text1", ".card-text2", ".card-text3", ".card-text4", ".card-text5"]
+                        const cardHeaderArray = [".future-card-header1", ".future-card-header2", ".future-card-header3", ".future-card-header4", ".future-card-header5"]
+                        const futureData = data.list;
+                        const filteredFutureData = futureData.filter(day => day.dt_txt.includes("12:00:00"));
+                        for (let i = 0; i < filteredFutureData.length; i++) {
+                            let futureTemp = filteredFutureData[i].main.temp;
+                            let futureHumidity = filteredFutureData[i].main.humidity;
+                            let futureWind = filteredFutureData[i].wind.speed;
+                            let futureIcon = filteredFutureData[i].weather[0].icon;
+                            let futureIconURL = `<img src="http://openweathermap.org/img/w/${futureIcon}.png" />`;
+                            let futureDate = new Date(filteredFutureData[i].dt_txt);
+                        
+                            let cardTitleEl = document.querySelector(cardTitleArray[i]);
+                            let cardText = document.querySelector(cardTextArray[i]);
+                            let cardHeader = document.querySelector(cardHeaderArray[i]);
+                        
+                            // Check if the elements were found before updating them
+                            if (cardTitleEl && cardText) {
+                                cardHeader.innerText = `${data.city.name} (${futureDate.getMonth() + 1}/${futureDate.getDate()}/${futureDate.getFullYear()})`;
+                                cardTitleEl.innerHTML = `${futureIconURL} ${futureTemp}°F`;
+                                cardText.innerText = `Wind Speed: ${futureWind}MPH, Humidity: ${futureHumidity}%`;
+                            } else {
+                                console.error(`Elements not found for index ${i}`);
                             }
-                            }
-                            let futureDate = new Date(futureData.dt_txt);
-                            document.getElementById("future-card-header").innerText = `${data.city.name} (${futureDate.getMonth() + 1}/${futureDate.getDate()}/${futureDate.getFullYear()})`;
-                        // var iconcode = data.list[0].weather[0].icon;
-                        // console.log(iconcode);
-                        // var iconurl = `<img src="http://openweathermap.org/img/w/${iconcode}.png" />`;
-                        // console.log(iconurl);
-                        // let futureCard = document.getElementById("card-title");
-                        // futureCard.innerHTML = `${iconurl} ${data.list[0].weather[0].main.temp}°F`;
-                        // document.getElementById("card-text").innerHTML = `Wind Speed: ${data.wind.speed}MPH, Humidity: ${data.main.humidity}%`;
+                        }
                     })
             })
     }
 );
-
-setSavedInput();
-
-// We need to be able to save the city they searched for in local storage
-
-// Then we need to be save that search in a "Recent Searches" bar
-
-// Then we need to do the same thing for the next 5 days in the 5 secondary cards below the current day card
