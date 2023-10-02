@@ -107,4 +107,7 @@
     #future-forecast-cards {
         flex-direction: column;
     }
+    #search-form {
+        flex-direction: column;
+    }
 }
